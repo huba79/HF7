@@ -71,10 +71,12 @@ public class AnimalsAdapter extends RecyclerView.Adapter<AnimalsAdapter.VH> {
                         Log.d("listitemclick", "event fired, animal is not null");
                         System.out.println("event fired, animal is not null");
                         Toast.makeText(v.getContext().getApplicationContext(), animal.getName(), Toast.LENGTH_SHORT).show();
+//                        kiprobaltam ezt is, bar a feladat explicit nem kerte.
+//                        Kiveve a kommentet, betolt egy reszletes allatinformaciot megjelenito activity-t. Tesztelve
 
-                        Intent launchDetailedActivity = new Intent(mContext, DisplayAnimalExtraActivity.class);
-                        launchDetailedActivity.putExtra("CURRENTANIMAL", animal);
-                        mContext.startActivity(launchDetailedActivity);
+//                        Intent launchDetailedActivity = new Intent(mContext, DisplayAnimalExtraActivity.class);
+//                        launchDetailedActivity.putExtra("CURRENTANIMAL", animal);
+//                        mContext.startActivity(launchDetailedActivity);
 
                     } else {
                         Log.d("listitemclick", "event fired, animal is  null");
