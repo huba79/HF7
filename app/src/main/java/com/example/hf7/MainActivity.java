@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,8 +19,8 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView rvContacts = findViewById(R.id.animalListView);
         rvContacts.setHasFixedSize(true);
         rvContacts.setLayoutManager(new LinearLayoutManager(this));
-        List<Animal> animals= Animal.getAnimals();
-        AnimalsAdapter adapter = new AnimalsAdapter(this,animals);
+        ArrayList<Animal> animals= Animal.getAnimals();
+                AnimalsAdapter adapter = new AnimalsAdapter(this,animals);
         rvContacts.setAdapter(adapter);
 
     }

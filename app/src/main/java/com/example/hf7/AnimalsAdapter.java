@@ -2,38 +2,32 @@ package com.example.hf7;
 
         import android.app.Activity;
         import android.content.Context;
-        import android.graphics.Color;
+        import android.content.Intent;
+        import android.util.Log;
         import android.view.LayoutInflater;
         import android.view.View;
         import android.view.ViewGroup;
         import android.widget.ImageView;
         import android.widget.TextView;
         import android.widget.Toast;
-
         import androidx.annotation.NonNull;
-        import androidx.cardview.widget.CardView;
         import androidx.recyclerview.widget.RecyclerView;
+        import java.util.ArrayList;
 
-        import com.bumptech.glide.Glide;
-        import com.google.android.material.transition.platform.MaterialElevationScale;
-
-        import java.util.List;
 
 public class AnimalsAdapter extends RecyclerView.Adapter<AnimalsAdapter.VH> {
     private Activity mContext;
-    private List<Animal> mAnimals;
+    private ArrayList<Animal> mAnimals;
 
-    public AnimalsAdapter(Activity mContext, List<Animal> mContacts) {
-        this.mContext = mContext;
-        this.mAnimals = mContacts;
+    public AnimalsAdapter(Activity pContext, ArrayList<Animal> pAnimals) {
+        this.mContext = pContext;
+        this.mAnimals = pAnimals;
     }
 
     @NonNull
     @Override
     public AnimalsAdapter.VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.animal_list_item_layout, parent, false);
-        CardView cardView = itemView.findViewById(R.id.animalCardView);
-            cardView.setCardBackgroundColor(Color.LTGRAY);
         return new VH(itemView, mContext);
     }
 
@@ -41,11 +35,11 @@ public class AnimalsAdapter extends RecyclerView.Adapter<AnimalsAdapter.VH> {
     public void onBindViewHolder(@NonNull AnimalsAdapter.VH holder, int position) {
         Animal animal = mAnimals.get(position);
         holder.rootView.setTag(animal);
-
+        System.out.println(animal.getName()+"\tbound\n");
         holder.tvName.setText(animal.getName());
         holder.tvDescription.setText(animal.getDescription());
         holder.tvContent.setText(animal.getContent());
-        Glide.with(mContext).load(animal.getThumbnailDrawable()).centerCrop().into(holder.ivPicture);
+        holder.ivPicture.setImageResource(animal.getImageID());
     }
 
     @Override
@@ -68,17 +62,26 @@ public class AnimalsAdapter extends RecyclerView.Adapter<AnimalsAdapter.VH> {
             tvDescription = (TextView) itemView.findViewById(R.id.animalDescriptionViewID);
             tvContent = (TextView) itemView.findViewById(R.id.animalContentTextViewID);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final Animal animal = (Animal) v.getTag();
+                    System.out.println("listiemclick event fired");
+                    if (animal != null) {
+                        Log.d("listitemclick", "event fired, animal is not null");
+                        System.out.println("event fired, animal is not null");
+                        Toast.makeText(v.getContext().getApplicationContext(), animal.getName(), Toast.LENGTH_SHORT).show();
 
-            itemView.setOnClickListener(v -> {
-                final Animal animal = (Animal) v.getTag();
-                if (animal != null) {
-                    Toast.makeText(pContext.getApplicationContext(), animal.getName(),Toast.LENGTH_SHORT).show();
-                    //Intent i = new Intent(mContext, DetailsActivity.class);
-                    //i.putExtra("EXTRA_CONTACT", contact);
-                    //mContext.startActivity(i);
-                    // Fire an intent when a contact is selected
-                    // Pass contact object in the bundle and populate details activity.
+                        Intent launchDetailedActivity = new Intent(mContext, DisplayAnimalExtraActivity.class);
+                        launchDetailedActivity.putExtra("CURRENTANIMAL", animal);
+                        mContext.startActivity(launchDetailedActivity);
+
+                    } else {
+                        Log.d("listitemclick", "event fired, animal is  null");
+                        System.out.println("event fired, animal is  null");
+                    }
                 }
+
             });
         }
     }

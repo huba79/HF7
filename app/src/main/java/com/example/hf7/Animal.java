@@ -1,8 +1,9 @@
 package com.example.hf7;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Animal {
+public class Animal implements Serializable {
     private String name;
     private String description;
     private int imageID;

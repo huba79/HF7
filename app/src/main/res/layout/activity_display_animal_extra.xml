@@ -6,4 +6,52 @@
     android:layout_height="match_parent"
     tools:context=".DisplayAnimalExtraActivity">
 
+    <ImageView
+        android:id="@+id/animalExtraImageViewID"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_margin="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/animalExtraNameViewID"
+        app:srcCompat="@drawable/cat" />
+
+    <TextView
+        android:id="@+id/animalExtraNameViewID"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_margin="30dp"
+        android:layout_marginTop="28dp"
+        android:text="TextView"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/animalExtraContentViewID"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_margin="30dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/animalExtraDescriptionViewID" />
+
+    <TextView
+        android:id="@+id/animalExtraDescriptionViewID"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_margin="30dp"
+        android:text="TextView"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/animalExtraImageViewID" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
